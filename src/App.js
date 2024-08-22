@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import Sidebar from './Components/SideBar/Sidebar.jsx';
+import UserProfile from './Components/UserProfile/UserProfile.jsx';
+
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import Dashboard from './Components/DashBoard/Dashboard';
+import RootLayout from "./Components/RootLayout/Rootlayout";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<RootLayout />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/userprofile" element={<UserProfile />} />
+      <Route path ="/sidebar"  element={<Sidebar/>}/>
+      </Route>
+    )
   );
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;
